@@ -59,17 +59,17 @@ const fadeInUp = {
 
 
 
-const LineChartCust = ({chartData}) => {
+const LineChartCust = ({chartData}:any) => {
 
 
 
-  // const chartData = [
-  //   { ward: "Ward 1", Residential: 54, Commercial: 12, Mixed: 9 },
-  //   { ward: "Ward 2", Residential: 48, Commercial: 15, Mixed: 7 },
-  //   { ward: "Ward 3", Residential: 62, Commercial: 7, Mixed: 11 },
-  //   { ward: "Ward 4", Residential: 55, Commercial: 16, Mixed: 6 },
-  //   { ward: "Ward 5", Residential: 68, Commercial: 14, Mixed: 13 }
-  // ];
+   chartData = [
+    { ward: "Ward 1", residential: 54, commercial: 12, mixed: 9 },
+    { ward: "Ward 2", residential: 48, commercial: 15, mixed: 7 },
+    { ward: "Ward 3", residential: 62, commercial: 7, mixed: 11 },
+    { ward: "Ward 4", residential: 55, commercial: 16, mixed: 6 },
+    { ward: "Ward 5", residential: 68, commercial: 14, mixed: 13 }
+  ];
 
 
 
@@ -94,21 +94,21 @@ const LineChartCust = ({chartData}) => {
                 <Legend />
                 <Line
                   type="monotone"
-                  dataKey="Residential"
+                  dataKey="residential"
                   stroke="#164e63"
                   strokeWidth={3}
                   dot={{ stroke: "#164e63", strokeWidth: 2, r: 4 }}
                 />
                 <Line
                   type="monotone"
-                  dataKey="Commercial"
+                  dataKey="commercial"
                   stroke="#d97706"
                   strokeWidth={3}
                   dot={{ stroke: "#d97706", strokeWidth: 2, r: 4 }}
                 />
                 <Line
                   type="monotone"
-                  dataKey="Mixed"
+                  dataKey="mixed"
                   stroke="#10b981"
                   strokeWidth={3}
                   dot={{ stroke: "#10b981", strokeWidth: 2, r: 4 }}

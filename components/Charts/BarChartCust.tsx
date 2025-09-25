@@ -1,95 +1,132 @@
-import React from 'react'
-import { motion } from "framer-motion"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
+"use client";
+
 import {
-	Building2,
-	Home,
-	Building,
-	Users,
-	TrendingUp,
-	Search,
-	Filter,
-	Bell,
-	LogOut,
-	BarChart3,
-	PieChart as RechartsPieChartIcon,
-	Activity,
-	MapPin,
-	Calendar,
-	Clock,
-	CheckCircle,
-	AlertCircle,
-	XCircle,
-	Target,
-	Zap,
-	Shield,
-	Globe,
-} from "lucide-react"
+  Bar,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+} from "recharts";
 import {
-	PieChart as RechartsPieChart,
-	Cell,
-	ResponsiveContainer,
-	BarChart,
-	Bar,
-	XAxis,
-	YAxis,
-	CartesianGrid,
-	Tooltip,
-	Pie,
-	Area,
-	AreaChart,
-	LineChart,
-	Line,
-	Legend,
-	Label,
-} from "recharts"
-import Link from "next/link"
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 
-const fadeInUp = {
-	initial: { opacity: 0, y: 20 },
-	animate: { opacity: 1, y: 0 },
-	transition: { duration: 0.5 },
+// Dummy data
+const genderData = {
+  "ward 1": { male: 10, female: 20 },
+  "ward 2": { male: 190, female: 90 },
+  "ward 3": { male: 75, female: 120 },
+  "ward 4": { male: 40, female: 60 },
+  "ward 5": { male: 130, female: 110 },
+  "ward 6": { male: 200, female: 180 },
+  "ward 7": { male: 95, female: 105 },
+  "ward 8": { male: 60, female: 80 },
+  "ward 9": { male: 150, female: 140 },
+  "ward 10": { male: 50, female: 70 },
+};
+
+export default function BarChartCust({ genderData : obj} : any) {
+
+  // const genderData = obj.reduce((acc, item) => {
+  //   const [key, value] = Object.entries(item)[0]; // get key & value
+  //   acc[key] = value;
+  //   return acc;
+  // }, {});
+
+  console.log(obj)
+  
+
+  // Transform data for Recharts
+  const chartData = Object.entries(genderData).map(([ward, data]) => ({
+    ward,
+    male: data.male,
+    female: data.female,
+  }));
+
+  // Chart colors
+  const chartConfig = {
+    male: {
+      label: "Male",
+      color: "#3B82F6", // Bright Blue
+    },
+    female: {
+      label: "Female",
+      color: "#F97316", // Vibrant Orange
+    },
+  };
+
+  return (
+    <div id="total-property-distribution" className="bg-background w-full">
+      <div className="flex justify-center items-center w-full">
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle>Gender Distribution by Ward</CardTitle>
+            <CardDescription>
+              Population breakdown showing male and female counts across all
+              wards
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex justify-center items-center">
+            <ChartContainer config={chartConfig} className="h-[400px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  data={chartData}
+                  margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 50,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis
+                    dataKey="ward"
+                    tick={{ fontSize: 12 }}
+                    angle={-45}
+                    textAnchor="end"
+                    height={80}
+                  />
+                  <YAxis />
+                  <ChartTooltip
+                    content={
+                      <ChartTooltipContent
+                        className="!text-base !font-semibold"
+                        formatter={(value, name, props) => {
+                          const total =
+                            props.payload?.male + props.payload?.female;
+                          return [`${value} (${name})`, `Total: ${total}`];
+                        }}
+                      />
+                    }
+                  />
+                  <Bar
+                    dataKey="male"
+                    fill={chartConfig.male.color}
+                    name="Male"
+                    radius={[4, 4, 0, 0]}
+                  />
+                  <Bar
+                    dataKey="female"
+                    fill={chartConfig.female.color}
+                    name="Female"
+                    radius={[4, 4, 0, 0]}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
 }
-
-// const zoneData = [
-// 	{ zone: "Zone A", properties: 3200, surveys: 2890, completion: 90 },
-// 	{ zone: "Zone B", properties: 2800, surveys: 2650, completion: 95 },
-// 	{ zone: "Zone C", properties: 4100, surveys: 3800, completion: 93 },
-// 	{ zone: "Zone D", properties: 2600, surveys: 2400, completion: 92 },
-// 	{ zone: "Zone E", properties: 1004, surveys: 964, completion: 96 },
-// ]
-
-const BarChartCust = ({zoneData}) => {
-	return (
-		<motion.div {...fadeInUp} className='h-full'>
-			<Card className="border-0 shadow-xl h-full">
-				<CardHeader className="pb-6">
-					<CardTitle className="flex items-center text-foreground text-lg">
-						<BarChart3 className="h-6 w-6 mr-3 text-primary" />
-						Zone Progress
-					</CardTitle>
-					<CardDescription className="text-base">Survey completion by zone</CardDescription>
-				</CardHeader>
-				<CardContent>
-					<ResponsiveContainer width="100%" height={280}>
-						<BarChart data={zoneData}>
-							<CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-							<XAxis dataKey="zone" />
-							<YAxis />
-							<Tooltip />
-							<Bar dataKey="completionPercentage" fill="#164e63" radius={[4, 4, 0, 0]} />
-						</BarChart>
-					</ResponsiveContainer>
-					<p className="text-center text-sm text-gray-500 mt-2">
-						Zone Properties - Surveys Completion Percentage
-					</p>
-				</CardContent>
-			</Card>
-		</motion.div>
-	)
-}
-
-export default BarChartCust

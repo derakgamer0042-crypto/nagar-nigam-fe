@@ -121,3 +121,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.scroll-margin{
+  scroll-margin-top: 60px;
+}

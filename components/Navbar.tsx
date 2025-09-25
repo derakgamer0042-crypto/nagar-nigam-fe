@@ -10,6 +10,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { useState, useRef, useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 
 
@@ -18,6 +19,11 @@ export default function Navbar() {
 
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 	const dropdownRef = useRef<HTMLDivElement>(null)
+	const router = useRouter();
+
+	const handleRedirect = ()=>{
+		router.push("/user-view")
+	}
 
 	useEffect(() => {
 		function handleClickOutside(event: MouseEvent) {
@@ -51,12 +57,17 @@ export default function Navbar() {
 				<div className="flex ml-auto">
 					<div className="flex-1 max-w-md mx-8 ">
 					<div className="relative">
-						<Input
+						{/* <Input
 							type="text"
 							placeholder="Enter PPIN Number"
 							className="pl-10 pr-4 py-3 bg-background/80 border-2 border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg transition-all duration-200 placeholder:text-muted-foreground/70"
 						/>
-						<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground/70" />
+						<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground/70" /> */}
+
+						<Button onClick={handleRedirect} className="border border-solid border-black cursor-pointer">
+							See your Details
+						</Button>
+
 					</div>
 				</div>
 

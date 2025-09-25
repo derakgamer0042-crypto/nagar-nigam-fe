@@ -54,11 +54,17 @@ const fadeInUp = {
 
 const PieChartCust = ({propertyData}) => {
 
-	// const propertyData = [
+	// propertyData = [
 	// 	{ name: "Residential", value: 11295, color: "#0891b2" },
-	// 	{ name: "Non-Residential", value: 514, color: "#d97706" },
+	// 	{ name: "Commercial", value: 514, color: "#d97706" },
 	// 	{ name: "Mixed", value: 1895, color: "#475569" },
 	// ]
+
+	propertyData = [
+		{name : "Residential" , value : propertyData.totalResidentialProperty , color : "#0891b2"},
+		{name : "Commercial" , value : propertyData.totalCommercialProperty , color : "#d97706"},
+		{name : "Mixed" , value : propertyData.totalMixedProperty , color : "#475569"}
+	]
 
 	return (
 		<motion.div {...fadeInUp} className='h-full'>
@@ -66,7 +72,7 @@ const PieChartCust = ({propertyData}) => {
 				<CardHeader className="pb-6">
 					<CardTitle className="flex items-center text-foreground text-lg">
 						<RechartsPieChartIcon className="h-6 w-6 mr-3 text-primary" />
-						Property Distribution
+						Property Distribution , Total Properties : {propertyData.totalProperties}
 					</CardTitle>
 					<CardDescription className="text-base">Breakdown by property type</CardDescription>
 				</CardHeader>
