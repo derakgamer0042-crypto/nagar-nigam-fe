@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { Building, Bus, GraduationCap, Heart, MapPin, Trees } from "lucide-react";
+import { Building, Bus, GraduationCap, Heart, MapPin, Trees , Store } from "lucide-react";
 import { Button } from "../ui/button";
 
 import dynamic from "next/dynamic";
@@ -18,7 +18,33 @@ const LocationMap = dynamic(()=> import("../mapComponent/map") , {ssr : false} )
 
 // import LocationMap from "../mapComponent/map";
 
+
+interface LocationCategoriesType{
+  allLocations? : any
+  governmentOffices? : any
+  schoolsAndColleges? : any
+  hospitalsAndClinics? : any
+  parksAndRecreation? : any
+  transportHubs? : any
+  localShops? : any
+}
+
+
+// here we have to map the locationCategoryNameKey with the locatoin Name to display on frontend
+const categoryKeyMapping = {
+  allLocations : { name : "All Locations" , icon : MapPin  },
+  governmentOffices : { name : "Goverment Offices" , icon :  Building },
+  schoolsAndColleges : { name : "Schools and Colleges" , icon :  GraduationCap },
+  hospitalsAndClinics : { name :  "Hospital and Clinics" , icon : Heart  },
+  parksAndRecreation : { name :  "Park and Recreation" , icon : Trees  },
+  transportHubs : { name :  "Transport Hubs" , icon : Bus  },
+  localShops : { name :  "Local Shops" , icon : Store  }
+}
+
+
 const LocationListings = ({fadeInUp} : any) => {
+
+
 
 
 	const[isLoading , setIsLoading] = useState(true)
@@ -27,9 +53,12 @@ const LocationListings = ({fadeInUp} : any) => {
 	const [activeCategory, setActiveCategory] = useState("all")
 	// const [selected, setSelected] = useState<any>(null);
 
+
+  console.log("locationcategories are : " , locationcategories);
+
 	const fetchLocationGroups = async()=>{
 		try{
-
+      setIsLoading(true);
 			const res = (await axios({
 				url : `${process.env.NEXT_PUBLIC_BACKEND_URL}${process.env.NEXT_PUBLIC_PUBLIC_ROUTES}/get-locations`,
 				method : "get"
@@ -37,11 +66,27 @@ const LocationListings = ({fadeInUp} : any) => {
 
 			console.log("data is : " , res.data)
 
-			setLocationCategories(Object.keys(res?.data))
+			// setLocationCategories(Object.keys(res?.data))
+      
+      const locationCategoriesDataBuild = Object.entries(res?.data).map(([key , value] : any)=>{
+        return {
+          locationCategoryNameKey : key,
+          locationCategoryNameToDisplay : categoryKeyMapping[key]?.name ,
+          totalNumberOfLocations : res?.data[key].length,
+          locations : value,
+          icon : categoryKeyMapping[key]?.icon
+        }
+      })
+
+      setLocationCategories(locationCategoriesDataBuild)
+
+      
 
 		}catch(err : any){
 			console.log("[ERROR in fetchLocationGroups : " , err.message)
-		}
+		}finally{
+      setIsLoading(false);
+    }
 	}
 
 	useEffect(()=>{
@@ -49,14 +94,14 @@ const LocationListings = ({fadeInUp} : any) => {
 
 	},[])
 
-  const locationCategories = [
-    { id: "all", name: "All Locations", icon: MapPin, count: 156 },
-    { id: "government", name: "Government Offices", icon: Building, count: 24 },
-    {id: "schools",name: "Schools & Colleges",icon: GraduationCap,count: 45,},
-    { id: "hospitals", name: "Hospitals & Clinics", icon: Heart, count: 18 },
-    { id: "parks", name: "Parks & Recreation", icon: Trees, count: 32 },
-    { id: "transport", name: "Transport Hubs", icon: Bus, count: 12 },
-  ];
+  // const locationCategories = [
+  //   { id: "all", name: "All Locations", icon: MapPin, count: 156 },
+  //   { id: "government", name: "Government Offices", icon: Building, count: 24 },
+  //   {id: "schools",name: "Schools & Colleges",icon: GraduationCap,count: 45,},
+  //   { id: "hospitals", name: "Hospitals & Clinics", icon: Heart, count: 18 },
+  //   { id: "parks", name: "Parks & Recreation", icon: Trees, count: 32 },
+  //   { id: "transport", name: "Transport Hubs", icon: Bus, count: 12 },
+  // ];
 
   const mockBuildings = {
     all: [
@@ -240,6 +285,7 @@ const LocationListings = ({fadeInUp} : any) => {
         </motion.div>
 
         <div className="grid lg:grid-cols-12 gap-8">
+          
           {/* Left Sidebar - Location Filters */}
           <motion.div className="lg:col-span-4" {...fadeInUp}>
             <Card className="bg-white shadow-lg border-0 rounded-2xl overflow-hidden">
@@ -248,14 +294,14 @@ const LocationListings = ({fadeInUp} : any) => {
                   Filter Locations
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 px-6 pb-6">
-                {locationCategories.map((category) => {
+              { !isLoading &&  <CardContent className="space-y-3 px-6 pb-6">
+                {locationcategories.map((category : any , index  : any) => {
                   const IconComponent = category.icon;
-                  const isActive = activeCategory === category.id;
+                  const isActive = activeCategory === category.locationCategoryNameKey;
                   return (
                     <motion.button
-                      key={category.id}
-                      onClick={() => setActiveCategory(category.id)}
+                      key={index}
+                      onClick={() => setActiveCategory(category?.locationCategoryNameKey)}
                       className={`w-full flex items-center justify-between p-4 rounded-xl transition-all duration-200 ${
                         isActive
                           ? "bg-gray-900 text-white shadow-md"
@@ -269,21 +315,21 @@ const LocationListings = ({fadeInUp} : any) => {
                           className={`h-5 w-5 ${
                             isActive
                               ? "text-white"
-                              : category.id === "government"
+                              : category?.locationCategoryNameKey === "governmentOffices"
                               ? "text-blue-500"
-                              : category.id === "schools"
+                              : category?.locationCategoryNameKey === "schoolsAndColleges"
                               ? "text-green-500"
-                              : category.id === "hospitals"
+                              : category?.locationCategoryNameKey === "hospitalsAndClinics"
                               ? "text-red-500"
-                              : category.id === "parks"
+                              : category?.locationCategoryNameKey === "parksAndRecreation"
                               ? "text-emerald-500"
-                              : category.id === "transport"
+                              : category?.locationCategoryNameKey === "transportHubs"
                               ? "text-purple-500"
                               : "text-gray-600"
                           }`}
                         />
                         <span className="font-medium text-left">
-                          {category.name}
+                          {category?.locationCategoryNameToDisplay}
                         </span>
                       </div>
                       <span
@@ -293,16 +339,16 @@ const LocationListings = ({fadeInUp} : any) => {
                             : "bg-gray-100 text-gray-600"
                         }`}
                       >
-                        {category.count}
+                        {category?.totalNumberOfLocations}
                       </span>
                     </motion.button>
                   );
                 })}
-              </CardContent>
+              </CardContent>}
             </Card>
 
             {/* Location Listings */}
-            <motion.div className="mt-6" {...fadeInUp}>
+            {/* <motion.div className="mt-6" {...fadeInUp}>
               <Card className="bg-white shadow-lg border-0 rounded-2xl overflow-hidden">
                 <CardHeader className="pb-4">
                   <CardTitle className="text-lg font-bold text-gray-900">
@@ -356,7 +402,7 @@ const LocationListings = ({fadeInUp} : any) => {
                   </AnimatePresence>
                 </CardContent>
               </Card>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           {/* Right Side - Interactive Map */}
