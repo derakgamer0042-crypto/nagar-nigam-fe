@@ -118,104 +118,95 @@ console.log("✅")
 
 
 	return (
-		<motion.div {...fadeInUp} id='recent-survey-submissions' >
-			<Card className="border-0 shadow-lg">
-				<CardHeader>
-					<div className="flex items-center justify-between">
-						<div>
-							<CardTitle className="text-foreground text-xl">Recent Survey Submissions</CardTitle>
-							<CardDescription>Latest property survey data and status updates</CardDescription>
-						</div>
-						<div className="flex items-center space-x-3">
-							<div className="relative">
-								<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-								<Input value={searchValue} onChange={(e)=> setSearchValue(e.target.value)} placeholder="Search submissions..." className="pl-10 w-64 border-0 bg-muted/50" />
-							</div>
-							<Button
-								// variant="outline"
-								size="sm"
-								className="cursor-pointer border-secondary/20 text-secondary hover:bg-secondary hover:text-secondary-foreground bg-transparent font-medium"
-							>
-								<Filter className="h-4 w-4 mr-2" />
-								Filter
-							</Button>
-						</div>
-					</div>
-				</CardHeader>
-				<CardContent>
-					<div className="overflow-x-auto">
-						<table className="w-full">
-							<thead>
-								<tr className="border-b border-border">
-									<th className="text-left py-4 px-4 font-semibold text-foreground">Survey ID</th>
-									<th className="text-left py-4 px-4 font-semibold text-foreground">Location</th>
-									<th className="text-left py-4 px-4 font-semibold text-foreground">Status</th>
-									{/* <th className="text-left py-4 px-4 font-semibold text-foreground">Priority</th> */}
-									<th className="text-left py-4 px-4 font-semibold text-foreground">Date</th>
-									<th className="text-left py-4 px-4 font-semibold text-foreground">Surveyor</th>
-								</tr>
-							</thead>
-							<tbody>
-								{surveySubmissions.filter(filterOutSurveyors).map((submission , index) => (
-									<tr key={index} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-										<td className="py-4 px-4 font-medium text-foreground">{submission.surveyorId}</td>
-										<td className="py-4 px-4">
-											<div className="space-y-1">
-												<p className="font-medium text-foreground"> WARD NO: {submission?.ward}</p>
-												<p className="text-sm text-muted-foreground">
-													{submission?.ward}, {submission?.address}
-												</p>
-											</div>
-										</td>
-										<td className="py-4 px-4">
-											<Badge
-												variant="outline"
-												className={
-													submission?.isSurveyVerified ? "border-emerald-200 bg-emerald-50 text-emerald-700": "border-red-200 bg-red-50 text-red-700"
-															// : "border-amber-200 bg-amber-50 text-amber-700"
-												}
-											>
-												{submission.isSurveyVerified  && <CheckCircle className="h-3 w-3 mr-1" />}
-												{!submission.isSurveyVerified && <XCircle className="h-3 w-3 mr-1" />}
-												{submission.isSurveyVerified ? "Completed" : "Pending"}
-											</Badge>
-										</td>
-										{/* <td className="py-4 px-4">
-											<Badge
-												variant="outline"
-												className={
-													submission.priority === "high"
-														? "border-red-200 bg-red-50 text-red-700"
-														: submission.priority === "medium"
-															? "border-amber-200 bg-amber-50 text-amber-700"
-															: "border-gray-200 bg-gray-50 text-gray-700"
-												}
-											>
-												{submission.priority}
-											</Badge>
-										</td> */}
-										<td className="py-4 px-4 text-muted-foreground">{ formatDate(submission?.surveyDate) }</td>
-										<td className="py-4 px-4">
-											<div className="flex items-center space-x-2">
-												<div className="h-8 w-8 bg-gradient-to-br from-secondary to-secondary/80 rounded-full flex items-center justify-center">
-													<span className="text-xs font-medium text-white">
-														{submission?.name
-															.split(" ")
-															.map((n) => n[0])
-															.join("")}
-													</span>
-												</div>
-												<span className="text-foreground">{submission?.name}</span>
-											</div>
-										</td>
-									</tr>
-								))}
-							</tbody>
-						</table>
-					</div>
-				</CardContent>
-			</Card>
-		</motion.div>
+		<motion.div {...fadeInUp} id='recent-survey-submissions'>
+  <Card className="border-0 shadow-lg flex flex-col w-full">
+    <CardHeader className="flex flex-col md:flex-row md:items-center md:justify-between w-full space-y-4 md:space-y-0">
+      <div className="flex flex-col">
+        <CardTitle className="text-foreground text-xl">Recent Survey Submissions</CardTitle>
+        <CardDescription>Latest property survey data and status updates</CardDescription>
+      </div>
+
+      <div className="flex flex-col md:flex-row md:items-center md:space-x-3 space-y-2 md:space-y-0 w-full md:w-auto">
+        <div className="relative flex-1 md:flex-none w-full md:w-auto">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Search submissions..."
+            className="pl-10 w-full md:w-64 border-0 bg-muted/50"
+          />
+        </div>
+
+        <Button
+          size="sm"
+          className="cursor-pointer border-secondary/20 text-secondary hover:bg-secondary hover:text-secondary-foreground bg-transparent font-medium flex items-center justify-center"
+        >
+          <Filter className="h-4 w-4 mr-2" />
+          Filter
+        </Button>
+      </div>
+    </CardHeader>
+
+    <CardContent className="flex flex-col w-full">
+      <div className="overflow-x-auto w-full">
+        <table className="w-full min-w-[600px] md:min-w-full table-auto border-collapse">
+          <thead>
+            <tr className="border-b border-border">
+              <th className="text-left py-4 px-4 font-semibold text-foreground">Survey ID</th>
+              <th className="text-left py-4 px-4 font-semibold text-foreground">Location</th>
+              <th className="text-left py-4 px-4 font-semibold text-foreground">Status</th>
+              <th className="text-left py-4 px-4 font-semibold text-foreground">Date</th>
+              <th className="text-left py-4 px-4 font-semibold text-foreground">Surveyor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {surveySubmissions.filter(filterOutSurveyors).map((submission, index) => (
+              <tr
+                key={index}
+                className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+              >
+                <td className="py-4 px-4 font-medium text-foreground">{submission.surveyorId}</td>
+                <td className="py-4 px-4 flex flex-col space-y-1">
+                  <p className="font-medium text-foreground">WARD NO: {submission?.ward}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {submission?.ward}, {submission?.address}
+                  </p>
+                </td>
+                <td className="py-4 px-4">
+                  <Badge
+                    variant="outline"
+                    className={
+                      submission?.isSurveyVerified
+                        ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                        : "border-red-200 bg-red-50 text-red-700"
+                    }
+                  >
+                    {submission.isSurveyVerified && <CheckCircle className="h-3 w-3 mr-1" />}
+                    {!submission.isSurveyVerified && <XCircle className="h-3 w-3 mr-1" />}
+                    {submission.isSurveyVerified ? "Completed" : "Pending"}
+                  </Badge>
+                </td>
+                <td className="py-4 px-4 text-muted-foreground">{formatDate(submission?.surveyDate)}</td>
+                <td className="py-4 px-4 flex items-center space-x-2">
+                  <div className="h-8 w-8 bg-gradient-to-br from-secondary to-secondary/80 rounded-full flex items-center justify-center">
+                    <span className="text-xs font-medium text-white">
+                      {submission?.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </span>
+                  </div>
+                  <span className="text-foreground">{submission?.name}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </CardContent>
+  </Card>
+</motion.div>
+
 	)
 }
 

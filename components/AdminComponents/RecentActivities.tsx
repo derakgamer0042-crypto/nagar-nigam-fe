@@ -244,7 +244,7 @@ const RecentActivities = ({ fadeInUp }: any) => {
     <motion.div {...fadeInUp} id="recent-activities" >
       <Card className="border-0 shadow-lg">
         <CardHeader className="pb-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-1  md:flex-row gap-5 w-full items-center justify-between">
             <div className="">
               <CardTitle className="flex items-center text-foreground text-xl">
                 <Building className="h-5 w-5 mr-2 text-primary" />
@@ -259,8 +259,8 @@ const RecentActivities = ({ fadeInUp }: any) => {
               </CardDescription>
             </div>
 
-            <div className="flex items-center gap-2">
-              <div className="flex gap-[10px] bg-muted rounded-lg p-1">
+            <div className="flex md:flex-row flex-col items-center gap-4 w-full md:w-fit">
+              <div className="flex gap-[10px] bg-muted w-full rounded-lg p-1 justify-around md:justify-center">
                 <Button
                   variant={
                     select === SelectTypes.Activities ? "default" : "ghost"
@@ -292,13 +292,13 @@ const RecentActivities = ({ fadeInUp }: any) => {
               </div>
               <Button
                 variant={"secondary"}
-                size="sm"
+                // size="sm"
                 onClick={fetchRecentActivities}
                 disabled={loading}
-                className="cursor-pointer"
+                className="cursor-pointer md:w-8 md:h-8 w-6 h-6"
               >
                 <RefreshCw
-                  className={`w-4 h-4 ${loading ? "animate-spin" : ""}`}
+                  className={`md:w-4 md:h-4 w-2 h-2 ${loading ? "animate-spin" : ""}`}
                 />
               </Button>
             </div>
@@ -383,7 +383,9 @@ const RecentActivities = ({ fadeInUp }: any) => {
           </div>
         </CardHeader>
 
-        <CardContent>
+        <CardContent
+        className="p-0"
+        >
           {loading && (
             <div className="flex items-center justify-center py-8">
               <RefreshCw className="w-6 h-6 animate-spin text-muted-foreground" />
@@ -478,7 +480,7 @@ const RecentActivities = ({ fadeInUp }: any) => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="space-y-3"
+                  className="space-y-3 w-full"
                 >
                   {(filteredAndSortedActivities as any[]).map(
                     (activity: any, index) => (
@@ -488,7 +490,7 @@ const RecentActivities = ({ fadeInUp }: any) => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
                       >
-                        <Card className="hover:shadow-md transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary">
+                        <Card className="hover:shadow-md w-full transition-all duration-200 border-l-4 border-l-transparent hover:border-l-primary">
                           <CardContent className="p-4">
                             <div className="flex items-start gap-4">
                               <div

@@ -258,8 +258,8 @@ export default function DashboardPage() {
 
             <div className="w-full">
               {adminStatsParent && (
-              <PieChartCust propertyData={adminStatsParent} />
-            )}
+                <PieChartCust propertyData={adminStatsParent} />
+              )}
             </div>
             {/* <BarChartCust zoneData={zoneData} /> */}
             <BarChartCust
@@ -270,7 +270,8 @@ export default function DashboardPage() {
               }))}
             />
 
-            <motion.div {...fadeInUp} className="w-full" >
+            {/* old unresponsive  */}
+            {/* <motion.div {...fadeInUp} className="w-full" >
             <Card className="border-0 shadow-lg">
               <CardHeader className="pb-4">
                 <CardTitle className="flex items-center text-foreground">
@@ -297,12 +298,49 @@ export default function DashboardPage() {
                 </ResponsiveContainer>
               </CardContent>
             </Card>
-          </motion.div>
+          </motion.div> */}
 
+          {/* new responsive */}
+            <motion.div {...fadeInUp} className="w-full flex">
+              <Card className="border-0 shadow-lg flex flex-col w-full">
+                {/* Header */}
+                <CardHeader className="pb-3 md:pb-4 flex flex-col items-center md:items-start text-center md:text-left">
+                  <CardTitle className="flex items-center text-foreground text-base md:text-lg">
+                    <Activity className="h-4 w-4 md:h-5 md:w-5 mr-2 text-secondary" />
+                    Weekly Trends
+                  </CardTitle>
+                  <CardDescription className="text-xs md:text-sm mt-1 md:mt-0">
+                    Daily survey activity
+                  </CardDescription>
+                </CardHeader>
+
+                {/* Chart */}
+                <CardContent className="flex-1 flex items-center justify-center">
+                  <ResponsiveContainer width="100%" height={200}>
+                    <AreaChart data={weeklyData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis
+                        dataKey="day"
+                        tick={{ fontSize: 10, fill: "#6b7280" }}
+                      />
+                      <YAxis tick={{ fontSize: 10, fill: "#6b7280" }} />
+                      <Tooltip />
+                      <Area
+                        type="monotone"
+                        dataKey="formsSubmitted"
+                        stroke="#6366f1"
+                        strokeWidth={2}
+                        fill="#6366f1"
+                        fillOpacity={0.3}
+                      />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
 
           {/* Weekly Trends */}
-          
 
           <SurveyorData fadeInUp={fadeInUp} />
 

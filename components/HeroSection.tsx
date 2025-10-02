@@ -33,7 +33,7 @@ export default function HeroSection() {
               operations.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <div className="flex flex-col justify-center items-center md:justify-start md:flex-row gap-4 md:gap-10 py-2 md:w-fit">
               <Link href="/dashboard">
                 <Button size="lg" className="bg-primary cursor-pointer hover:bg-primary/90 text-primary-foreground shadow-lg">
                   View Dashboard
