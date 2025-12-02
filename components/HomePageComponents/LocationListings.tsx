@@ -48,7 +48,7 @@ const LocationListings = ({fadeInUp} : any) => {
 
 
 	const[isLoading , setIsLoading] = useState(true)
-	const[locationcategories , setLocationCategories] = useState<any>()
+const [locationcategories, setLocationCategories] = useState<any[]>([]);
 	const [selectedLocation, setSelectedLocation] = useState<any>(null)
 	const [activeCategory, setActiveCategory] = useState("all")
 	// const [selected, setSelected] = useState<any>(null);

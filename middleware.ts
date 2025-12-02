@@ -7,10 +7,10 @@ export function middleware(req: any) {
   console.log("============= middleware ran ==================")
   console.log("token is:", token)
 
-  if (!token) {
-    // Redirect if no token
-    return NextResponse.redirect(new URL("/login", req.url))
-  }
+  // if (!token) {
+  //   // Redirect if no token
+  //   return NextResponse.redirect(new URL("/login", req.url))
+  // }
 
   return NextResponse.next();
   

@@ -43,6 +43,57 @@ const staggerContainer = {
     },
   },
 }
+const cards = [
+  {
+    img: "/yogi.jpg",
+    name: "योगी आदित्यनाथ",
+    post: "माननीय मुख्यमंत्री",
+    location:"(उत्तर प्रदेश)",
+  },
+  {
+    img: "/arvind.jpg",
+    name: "श्री अरविंद कुमार शर्मा",
+    post: "माननीय नगर विकास मंत्री",
+    location:"(उत्तर प्रदेश)",
+  },
+  {
+    img: "/karhalChairman.jpg ",
+    name: "चौ0 अब्दुल नईम",
+    post: "अध्यक्ष महोदय",
+    location:"(नगर पंचायत करहल मैनपुरी)",
+  },
+  {
+    img: "/karhalEO.jpg",
+    name: "लेखराज भारती",
+    post: "अधिशासी अधिकारी",
+    location:"(नगर पंचायत करहल मैनपुरी)",
+  },
+  {
+    img: "/rakesh.jpg",
+    name: "श्री राकेश राठौर गुरु",
+    post: "माननीय नगर विकास राज्य मंत्री",
+    location:"(उत्तर प्रदेश)",
+  },
+  {
+    img: "/guruprasad.jpeg",
+    name: "श्री पी0 गुरूप्रसाद",
+    post: "प्रमुख सचिव नगर विकास विभाग",
+    location:"(उत्तर प्रदेश)",
+  },
+  {
+    img: "/anuj.jpeg",
+    name: "श्री अनुज कुमार झा",
+    post: "निदेशक स्थानीय निकाय",
+    location:"(उत्तर प्रदेश)",
+  },
+  {
+    img: "/art-7.jpg",
+    name: "New",
+    post: "Craft beautiful interfaces with ease.",
+    location:"(उत्तर प्रदेश)",
+  },
+];
+
 
 
 
@@ -76,7 +127,7 @@ export default function LandingPage() {
           <div className="container mx-auto flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <MapPin className="h-4 w-4" />
-              <span className="text-sm font-medium">Noida</span>
+              <span className="text-sm font-medium">नगर पंचायत करहल मैनपुरी</span>
             </div>
             <div className="flex items-center space-x-3">
               <Instagram className="h-4 w-4 hover:text-primary cursor-pointer transition-colors" />
@@ -129,7 +180,7 @@ export default function LandingPage() {
 
       {/* Features Section */}
       <section className="py-20 px-4 bg-muted/30">
-        <div className="container mx-auto max-w-7xl">
+        <div className="container mx-auto">
           <motion.div className="text-center mb-16" {...fadeInUp}>
             <div className="flex items-center justify-center space-x-3 mb-4">
               <div className="bg-primary/10 p-2 rounded-lg">
@@ -142,96 +193,210 @@ export default function LandingPage() {
               Comprehensive data collection and management across all municipal sectors.
             </p>
           </motion.div>
+<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+  {cards.map((card, i) => (
+    <div
+      key={i}
+      className="bg-neutral-primary-soft w-full border border-default rounded-base shadow-xs"
+    >
+      <img
+        className="rounded-t-base sm:h-55 lg:h-80 w-full object-fill"
+        src={card.img}
+        alt={card.post}
+      />
 
-          <div className="relative">
-            <div className="flex gap-6 overflow-x-auto scrollbar-hide pb-4">
-              {[
-                {
-                  title: "Property Management",
-                  description: "Track residential, non-residential, and mixed properties with detailed categorization.",
-                  image: "/sunset-city-silhouettes.png",
-                },
-                {
-                  title: "Data Visualization",
-                  description: "Interactive charts and graphs to visualize survey data and property statistics.",
-                  image: "/modern-office-workspace-charts.png",
-                },
-                {
-                  title: "Survey Administration",
-                  description: "Manage survey submissions with zone, ward, and locality-based filtering.",
-                  image: "/mountain-road-green-valley.png",
-                },
-                {
-                  title: "Municipal Analytics",
-                  description: "Comprehensive insights and reporting for informed decision making.",
-                  image: "/modern-office-workspace-charts.png",
-                },
-                {
-                  title: "Secure Access",
-                  description: "Role-based access control with secure authentication for administrators.",
-                  image: "/security-shield-digital-lock.png",
-                },
-                {
-                  title: "Real-time Updates",
-                  description: "Live activity feeds and instant updates on survey submissions and changes.",
-                  image: "/real-time-dashboard-notifications.png",
-                },
-                {
-                  title: "Easy Integration",
-                  description: "Seamless integration with existing municipal systems and databases.",
-                  image: "/system-integration-network.png",
-                },
-                {
-                  title: "Quality Assurance",
-                  description: "Automated validation and quality checks for all survey data submissions.",
-                  image: "/placeholder-7ngv4.png",
-                },
-              ].map((feature, index) => (
-                <motion.div
-                  key={index}
-                  className="flex-shrink-0 w-80 h-96"
-                  variants={fadeInUp}
-                  whileHover={{
-                    y: -8,
-                    transition: {
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 25,
-                    },
-                  }}
-                >
-                  <Card className="bg-[#C1D8C3]/30 shadow-lg border-0 rounded-2xl overflow-hidden h-full hover:shadow-xl transition-all duration-300 p-0">
-                    <div className="h-48 overflow-hidden rounded-t-2xl">
-                      <img
-                        src={feature.image || "/placeholder.svg"}
-                        alt={feature.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <CardContent className="p-6 h-48 flex flex-col justify-between">
-                      <div>
-                        <CardTitle className="text-xl font-bold text-[#6A9C89] mb-3 leading-tight">
-                          {feature.title}
-                        </CardTitle>
-                        <CardDescription className="text-gray-600 leading-relaxed text-sm">
-                          {feature.description}
-                        </CardDescription>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+      <div className="p-3 sm:p-4 text-center">
+        <span className="block font-bold px-1.5 py-0.5 whitespace-nowrap text-[clamp(16px,2vw,22px)]">
+          {card.name}
+        </span>
 
-            <div className="flex justify-center mt-8 space-x-2">
-              {Array.from({ length: 8 }).map((_, index) => (
-                <div
-                  key={index}
-                  className="w-2 h-2 rounded-full bg-[#6A9C89]/30 hover:bg-[#6A9C89]/60 transition-colors duration-200"
-                />
-              ))}
-            </div>
-          </div>
+        <span className="block font-semibold whitespace-nowrap text-[clamp(12px,1.7vw,16px)]">
+          {card.post}
+        </span>
+        <span className="font-semibold whitespace-nowrap text-[clamp(11px,1.7vw,12px)]">
+          {card.location}
+        </span>
+      </div>
+    </div>
+  ))}
+</div>
+
+
+<div className="mt-10 space-y-10">
+
+  {/* Category 1 */}
+  <div>
+    <h2 className="text-2xl font-bold text-[#6A9C89] mb-4">महत्वपूर्ण सूत्र</h2>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {[
+        {
+          desc: "ई- नगर सेवा",
+          link: "http://e-nagarsewaup.gov.in/",
+        },
+        {
+          desc: "नगर विकास",
+          link: "http://urbandevelopment.up.nic.in/",
+        },
+        {
+          desc: "यू० पी० ऑनलाइन",
+          link: "http://uponline.up.nic.in/",
+        },
+        {
+          desc: "स्मार्ट सिटिज़",
+          link: "https://smartcities.gov.in/",
+        },
+        {
+          desc: "अमृत सिटिज़",
+          link: "http://amrut.gov.in/content/",
+        },
+        {
+          desc: "अर्बन सॉफ्ट",
+          link: "https://e-nagarsewaup.gov.in/mpr/",
+        },
+        {
+          desc: "स्वच्छ भारत मिशन (शहरी)",
+          link: "https://sbmurban.org/",
+        },
+      ].map((item, i) => (
+        <a
+          key={i}
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block p-2 bg-[#C1D8C3]/30 rounded-xl border border-[#6A9C89]/20 
+                     hover:bg-[#C1D8C3]/50 hover:shadow-md transition-all cursor-pointer"
+        >
+          <p className="text-gray-700 text-sm">{item.desc}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  {/* Category 2 */}
+  <div>
+    <h2 className="text-2xl font-bold text-[#6A9C89] mb-4">नागरिक सेवाएं</h2>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {[
+        {
+          desc: "जन्म प्रमाण पत्र - सत्यापन",
+          link: "https://e-nagarsewaup.gov.in/ulbapps/death_birth/citizenBirthVerification.action",
+        },
+        {
+          desc: "मृत्यु प्रमाण पत्र - सत्यापन",
+          link: "https://e-nagarsewaup.gov.in/ulbapps/death_birth/citizenDeathVerification.action",
+        },
+        {
+          desc: "लाइसेंस प्रमाण पत्र - सत्यापन",
+          link: "https://e-nagarsewaup.gov.in/ulbapps/licenses/licenses/licenseCheck.action",
+        },
+        {
+          desc: "ई-नगर सेवा से जुड़े हुए अस्पताल",
+          link: "https://e-nagarsewaup.gov.in/ulbapps/OnlineUser/hospitallist_dist.jsp",
+        },
+        {
+          desc: "शिकायतें ट्रैक करें",
+          link: "https://e-nagarsewaup.gov.in/ulbapps/Grievance/onlineGrievanceStatus.jsp",
+        },
+        {
+          desc: "आर०टी०आई० आवेदन-ट्रैक करें",
+          link: "https://e-nagarsewaup.gov.in/ulbapps/OnlineUser/rti_citizen_stat.jsp",
+        },
+        {
+          desc: "Step 1: ऑनलाइन आर टी आई 6(1) भरें",
+          link: "https://rtionline.up.gov.in/guidelines.php?lan=M",
+        },
+        {
+          desc: "Step 2: प्रथम अपील 19(1) भरें",
+          link: "https://rtionline.up.gov.in/guidelinesappeal.php?lan=M",
+        },
+        {
+          desc: "Step 3: द्वितीय अपील 19(3)/शिकायत 18(1) भरें",
+          link: "https://upsic.up.gov.in/cispu/citizen",
+        },
+      ].map((item, i) => (
+        <a
+          key={i}
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block p-2 bg-[#C1D8C3]/30 rounded-xl border border-[#6A9C89]/20 
+                     hover:bg-[#C1D8C3]/50 hover:shadow-md transition-all cursor-pointer"
+        >
+          <p className="text-gray-700 text-sm">{item.desc}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  {/* Category 3 */}
+  <div>
+    <h2 className="text-2xl font-bold text-[#6A9C89] mb-4">सूचनाएं - निदेशालय सम्बंधित</h2>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {[
+        {
+          desc: "आदेश",
+          link: "https://localbodies.up.nic.in/download-pdfs-one.html",
+        },
+        {
+          desc: "वित्त सम्बंधित",
+          link: "https://localbodies.up.nic.in/download-pdfs-two.html",
+        },
+        {
+          desc: "सेवा सम्बंधित",
+          link: "https://localbodies.up.nic.in/download-pdfs-three.html",
+        },
+        {
+          desc: "विज्ञापन / नोटिस",
+          link: "https://localbodies.up.nic.in/download-pdfs-four.html",
+        },
+        {
+          desc: "अमृत / स्मार्ट सिटिज़",
+          link: "https://localbodies.up.nic.in/download-pdfs-six.html",
+        },
+        {
+          desc: "स्वच्छ भारत मिशन (शहरी)",
+          link: "https://localbodies.up.nic.in/download-pdfs-seven.html",
+        },
+        {
+          desc: "पी० एम० यू०",
+          link: "https://localbodies.up.nic.in/download-pdfs-eight.html",
+        },
+        {
+          desc: "पुराने आदेश",
+          link: "https://localbodies.up.nic.in/download-pdfs-nine.html",
+        },
+        {
+          desc: "कार्य कलाप 2017-18 ",
+          link: "https://localbodies.up.nic.in/pdf/KaryakalapReport2016-17.pdf",
+        },
+        {
+          desc: "एस० एल० बी० 2017-18",
+          link: "https://localbodies.up.nic.in/slb.html",
+        },
+        {
+          desc: "यू पी एस डब्लू एम सैनिटेशन रुल्स 2019",
+          link: "https://localbodies.up.nic.in/SWN_NOTICE.html",
+        },
+      ].map((item, i) => (
+        <a
+          key={i}
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block p-2 bg-[#C1D8C3]/30 rounded-xl border border-[#6A9C89]/20 
+                     hover:bg-[#C1D8C3]/50 hover:shadow-md transition-all cursor-pointer"
+        >
+          <p className="text-gray-700 text-sm">{item.desc}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+
+</div>
+
         </div>
       </section>
 
@@ -311,9 +476,12 @@ export default function LandingPage() {
         <div className="container mx-auto text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Building2 className="h-6 w-6 text-primary" />
-            <span className="font-semibold text-foreground">Nagar Nigam Survey Platform</span>
+            <span className="font-bold text-foreground">Digital ULB |</span>
+               <span className="font-semi-bold text-foreground">
+                नगर पंचायत करहल मैनपुरी
+               </span>
           </div>
-          <p className="text-muted-foreground">© 2024 Municipal Survey Administration. All rights reserved.</p>
+          <p className="text-muted-foreground">© 2024 APEX INTERNATIONAL. All rights reserved.</p>
         </div>
       </footer>
     </div>

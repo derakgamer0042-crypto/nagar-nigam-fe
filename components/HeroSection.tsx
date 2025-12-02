@@ -1,73 +1,69 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
-import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 },
-}
+const images = [
+  "/heroposter.jpg",
+  "/hero-modi.jpg",
+  "/karhalChairman.jpg",
+  "/karhalEO.jpg",
+  "/bhagidari_karhal.png",
+  "/nagar_karhal.png"
+];
 
 export default function HeroSection() {
+  const [index, setIndex] = useState(0);
+
+  // Auto slide every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="py-16 px-4 lg:py-24">
-      <div className="container mx-auto max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Content Column - Left Side */}
-          <motion.div {...fadeInUp} className="space-y-6">
-            <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20 w-fit">
-              Property Management Platform
-            </Badge>
+    <section className="relative w-full h-[82vh] overflow-hidden">
 
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-foreground leading-tight">
-              Streamline Your
-              <span className="text-primary block">Municipal Surveys</span>
-            </h1>
+      {/* ------ BACKGROUND CAROUSEL ------ */}
+      <AnimatePresence>
+        <motion.img
+          key={index}
+          src={images[index]}
+          alt="Background"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2 }}
+          className="absolute inset-0 w-full h-full object-contain"
+        />
+      </AnimatePresence>
 
-            <p className="text-lg lg:text-xl text-muted-foreground max-w-lg leading-relaxed">
-              Comprehensive property management and survey administration platform designed for modern municipal
-              operations.
-            </p>
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
+<Badge className="relative z-10 w-fit bg-white/20 border-white/30">
+          Property Management Platform
+        </Badge>
+      {/* ------ CONTENT OVERLAY ------ */}
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 text-center px-4 w-full max-w-3xl">
 
-            <div className="flex flex-col justify-center items-center md:justify-start md:flex-row gap-4 md:gap-10 py-2 md:w-fit">
-              <Link href="/dashboard">
-                <Button size="lg" className="bg-primary cursor-pointer hover:bg-primary/90 text-primary-foreground shadow-lg">
-                  View Dashboard
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <Button
-                // variant="outline"
-                size="lg"
-                className="border-primary/20 cursor-pointer text-primary hover:bg-primary/5 bg-transparent shadow-md"
-              >
-                Learn More
-              </Button>
-            </div>
-          </motion.div>
 
-          {/* Image Column - Right Side */}
-          <motion.div {...fadeInUp} transition={{ duration: 0.6, delay: 0.2 }} className="relative h-full flex justify-center items-center">
-            <div className="relative rounded-2xl overflow-hidden bg-card">
-              <img
-                src="/hero-modi.jpg"
-                alt="Property management platform dashboard interface"
-                className="max-h-[400px] object-fill"
-              />
-              {/* Subtle overlay for depth */}
-              {/* <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent" /> */}
-            </div>
+  <h2 className="text-4xl font-bold leading-tight">
+    Streamline Your Muncipal Survey
+  </h2>
 
-            {/* Decorative element */}
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-accent/10 rounded-full blur-xl" />
-            <div className="absolute -top-4 -left-4 w-16 h-16 bg-primary/10 rounded-full blur-lg" />
-          </motion.div>
-        </div>
-      </div>
+  <p className="mt-2 text-white/80">
+    Comprehensive property management and survey administration platform
+    designed for modern municipal operations.
+  </p>
+
+</div>
+
     </section>
-  )
+  );
 }

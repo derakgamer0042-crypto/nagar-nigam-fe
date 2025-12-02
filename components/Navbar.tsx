@@ -42,7 +42,7 @@ export default function Navbar() {
           </div>
           <div className="flex flex-wrap flex-col md:flex-row items-center">
             <span className="text-md md:text-xl font-bold text-foreground">
-              BhuMaps
+              Digital ULB
             </span>
 
             {/* Hide separator on mobile */}
@@ -54,7 +54,7 @@ export default function Navbar() {
             {/* <br className="block md:hidden" /> */}
 
             <span className="text-xs md:text-lg text-foreground whitespace-nowrap">
-              Noida Nagar Nigam
+              नगर पंचायत करहल मैनपुरी
             </span>
           </div>
         </div>
