@@ -2,10 +2,10 @@
 import { NextResponse } from "next/server"
 
 export function middleware(req: any) {
-  const token = req.cookies.get("token")?.value
+  // const token = req.cookies.get("token")?.value
 
-  console.log("============= middleware ran ==================")
-  console.log("token is:", token)
+  // console.log("============= middleware ran ==================")
+  // console.log("token is:", token)
 
   // if (!token) {
   //   // Redirect if no token

@@ -144,7 +144,7 @@ const RecentActivities = ({ fadeInUp }: any) => {
           const activity = item;
           return (
             activity.message.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            activity.performedByUserData.name
+            activity?.performedByUserData?.name
               .toLowerCase()
               .includes(searchTerm.toLowerCase()) ||
             activity.schemaModel
@@ -524,14 +524,14 @@ const RecentActivities = ({ fadeInUp }: any) => {
                                       <span className="mx-1">•</span>
                                       <User className="w-3 h-3" />
                                       <span>
-                                        {activity.performedByUserData.name}
+                                        {activity?.performedByUserData?.name}
                                       </span>
                                       <span className="mx-1">•</span>
                                       <BadgeComponent
                                         variant="secondary"
                                         className="text-xs"
                                       >
-                                        {activity.performedByUserData.role}
+                                        {activity?.performedByUserData?.role}
                                       </BadgeComponent>
                                     </div>
 
@@ -561,7 +561,7 @@ const RecentActivities = ({ fadeInUp }: any) => {
                                               </span>
                                               <span className="ml-1">
                                                 {
-                                                  activity.performedByUserData
+                                                  activity?.performedByUserData
                                                     .email
                                                 }
                                               </span>

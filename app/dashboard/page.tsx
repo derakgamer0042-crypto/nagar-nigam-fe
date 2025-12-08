@@ -264,7 +264,7 @@ export default function DashboardPage() {
             {/* <BarChartCust zoneData={zoneData} /> */}
             <BarChartCust
               genderData={chartStats?.map((c: any) => ({
-                [c.ward.toLowerCase().startsWith("ward")
+                [c?.ward?.toLowerCase().startsWith("ward")
                   ? c.ward
                   : `Ward ${c.ward}`]: c.genderData,
               }))}
