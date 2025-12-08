@@ -295,7 +295,7 @@ const LocationListings = ({fadeInUp} : any) => {
                 </CardTitle>
               </CardHeader>
               { !isLoading &&  <CardContent className="space-y-3 px-6 pb-6">
-                {locationcategories.map((category : any , index  : any) => {
+                {locationcategories?.map((category : any , index  : any) => {
                   const IconComponent = category.icon;
                   const isActive = activeCategory === category.locationCategoryNameKey;
                   return (
