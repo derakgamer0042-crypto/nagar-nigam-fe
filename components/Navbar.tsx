@@ -82,7 +82,8 @@ export default function Navbar() {
             <Button
               // variant="outline"
               className="border-primary cursor-pointer text-primary hover:bg-primary hover:text-primary-foreground bg-transparent flex items-center space-x-2 px-2 md:px-4 py-2 shadow-md"
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              // onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              onClick={() => router.push("https://api.npup.in/karhal/admin/login")}
             >
               <User className="h-4 w-4" />
               <span>Login</span>
@@ -90,7 +91,7 @@ export default function Navbar() {
                 animate={{ rotate: isDropdownOpen ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <ChevronDown className="h-4 w-4" />
+                {/* <ChevronDown className="h-4 w-4" /> */}
               </motion.div>
             </Button>
 
