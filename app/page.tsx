@@ -57,6 +57,12 @@ const cards = [
     location:"(उत्तर प्रदेश)",
   },
   {
+    img: "/deputyminister.jpg",
+    name: "श्री केशव प्रसाद मौर्या",
+    post: "उप मुख्यमंत्री",
+    location:"(उत्तर प्रदेश)",
+  },
+  {
     img: "/karhalChairman.jpg ",
     name: "चौ0 अब्दुल नईम",
     post: "अध्यक्ष महोदय",
@@ -85,13 +91,7 @@ const cards = [
     name: "श्री अनुज कुमार झा",
     post: "निदेशक स्थानीय निकाय",
     location:"(उत्तर प्रदेश)",
-  },
-  {
-    img: "/art-7.jpg",
-    name: "New",
-    post: "Craft beautiful interfaces with ease.",
-    location:"(उत्तर प्रदेश)",
-  },
+  }
 ];
 
 
@@ -179,17 +179,36 @@ export default function LandingPage() {
       <HeroSection/>
 
       {/* Features Section */}
-      <section className="py-20 px-4 bg-muted/30">
+      <section className="py-5 px-4 bg-muted/30">
         <div className="container mx-auto">
           <motion.div className="text-center mb-16" {...fadeInUp}>
-            <div className="flex items-center justify-center space-x-3 mb-4">
+{/*<div className="mx-auto max-w-3xl border border-gray-300 bg-white">
+  <div className="bg-blue-800 px-6 py-3">
+    <h2 className="text-xl font-medium text-white">
+      Municipal Survey Management System
+    </h2>
+  </div>
+
+  <div className="p-8">
+    <h3 className="text-2xl font-semibold text-gray-900">
+      Streamline Your Municipal Survey
+    </h3>
+
+    <p className="mt-4 text-gray-700 leading-relaxed">
+      A comprehensive property management and survey administration platform
+      designed to support efficient, transparent, and accountable municipal
+      operations.
+    </p>
+  </div>
+</div>*/}
+            <div className="flex items-center justify-center space-x-3 mb-4 mt-6">
               <div className="bg-primary/10 p-2 rounded-lg">
                 <Building2 className="h-6 w-6 text-primary" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Survey Components</h2>
+              <h2 className="text-2xl md:text-4xl font-bold text-foreground">Survey Components</h2>
             </div>
             <div className="w-16 h-1 bg-[#CD5C08] mx-auto mb-6"></div>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base md:text-2xl text-muted-foreground max-w-2xl mx-auto">
               Comprehensive data collection and management across all municipal sectors.
             </p>
           </motion.div>
@@ -206,11 +225,11 @@ export default function LandingPage() {
       />
 
       <div className="p-3 sm:p-4 text-center">
-        <span className="block font-bold px-1.5 py-0.5 whitespace-nowrap text-[clamp(16px,2vw,22px)]">
+        <span className="block font-bold px-1.5 py-0.5 whitespace-nowrap text-[clamp(15px,2vw,22px)]">
           {card.name}
         </span>
 
-        <span className="block font-semibold whitespace-nowrap text-[clamp(12px,1.7vw,16px)]">
+        <span className="block font-semibold whitespace-nowrap text-[clamp(11.5px,1.7vw,16px)]">
           {card.post}
         </span>
         <span className="font-semibold whitespace-nowrap text-[clamp(11px,1.7vw,12px)]">
@@ -481,7 +500,7 @@ export default function LandingPage() {
                 नगर पंचायत करहल मैनपुरी
                </span>
           </div>
-          <p className="text-muted-foreground">© 2024 APEX INTERNATIONAL. All rights reserved.</p>
+          <p className="text-muted-foreground">© 2025-26 APEX INTERNATIONAL. All rights reserved.</p>
         </div>
       </footer>
     </div>

@@ -46,14 +46,14 @@ export default function Navbar() {
             </span>
 
             {/* Hide separator on mobile */}
-            <span className="hidden md:inline text-muted-foreground mx-2">
+            <span className="hidden md:inline font-bold text-muted-foreground mx-2">
               |
             </span>
 
             {/* Line break only on mobile */}
             {/* <br className="block md:hidden" /> */}
 
-            <span className="text-xs md:text-lg text-foreground whitespace-nowrap">
+            <span className="text-xs md:text-lg text-foreground font-bold whitespace-nowrap">
               नगर पंचायत करहल मैनपुरी
             </span>
           </div>
