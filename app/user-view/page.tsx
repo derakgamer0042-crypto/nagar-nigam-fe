@@ -89,7 +89,7 @@ export default function UserViewPage() {
   const [searchForm, setSearchForm] = useState({
     email: "",
     name: "",
-    ward: "",
+    wardNumber: "",
     address: "",
     aadharNumber: "",
     phoneNumber: "",
@@ -257,8 +257,8 @@ const handleUserSearchData = async()=>{
 			  className="text-emerald-500 bg-gray-100 border-emerald-500 focus:border-emerald-700 focus:ring focus:ring-blue-200"
                 id="ward"
                 placeholder="Enter ward number"
-                value={searchForm.ward}
-                onChange={(e) => handleInputChange("ward", e.target.value)}
+                value={searchForm.wardNumber}
+                onChange={(e) => handleInputChange("wardNumber", e.target.value)}
               />
             </div>
             <div className="space-y-2">
