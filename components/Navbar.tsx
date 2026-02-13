@@ -54,7 +54,7 @@ export default function Navbar() {
             {/* <br className="block md:hidden" /> */}
 
             <span className="text-xs md:text-lg text-foreground font-bold whitespace-nowrap">
-              नगर पंचायत करहल मैनपुरी
+              नगर पंचायत बरनाहल मैनपुरी
             </span>
           </div>
         </div>

@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const images = [
-  "/fogging.png",
+  "/barnahal-heroimage.png",
 ];
 
 export default function HeroSection() {
@@ -40,13 +40,13 @@ export default function HeroSection() {
       </AnimatePresence>
 
       {/* DARK OVERLAY */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
+      {/* <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" /> */}
       {/* ------ CONTENT OVERLAY ------ */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 text-center px-4 w-full max-w-3xl">
+      {/* <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 text-center px-4 w-full max-w-3xl">
 
 
 
-</div>
+</div> */}
 
     </section>
   );
