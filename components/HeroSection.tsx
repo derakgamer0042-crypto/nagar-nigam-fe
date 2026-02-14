@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const images = [
-  "/ghiror-hero.png",
+  "/bewar-hero.png",
 ];
 
 export default function HeroSection() {
@@ -23,7 +23,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative w-full md:h-[82vh] sm:h-[65vh] h-[35vh] overflow-hidden">
+    <section className="relative w-full md:h-[82vh] sm:h-[65vh] h-[30vh] overflow-hidden">
 
       {/* ------ BACKGROUND CAROUSEL ------ */}
       <AnimatePresence>

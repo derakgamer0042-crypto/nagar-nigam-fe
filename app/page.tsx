@@ -63,16 +63,16 @@ const cards = [
     location:"(उत्तर प्रदेश)",
   },
   {
-    img: "/ghiror-cardimage-1.jpeg ",
-    name: "यतेन्द्र कुमार",
+    img: "/bewar-cardimage-2.jpeg ",
+    name: "सरित कांत",
     post: "अध्यक्ष",
-    location:"(नगर पंचायत घिरोर मैनपुरी)",
+    location:"(नगर पंचायत बेवर मैनपुरी)",
   },
   {
-    img: "/karhalEO.jpg",
-    name: "लेखराज भारती",
+    img: "/bewarEO.jpg",
+    name: "",
     post: "अधिशासी अधिकारी",
-    location:"(नगर पंचायत घिरोर मैनपुरी)",
+    location:"(नगर पंचायत बेवर मैनपुरी)",
   },
   {
     img: "/rakesh.jpg",
@@ -127,7 +127,7 @@ export default function LandingPage() {
           <div className="container mx-auto flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <MapPin className="h-4 w-4" />
-              <span className="text-sm font-medium">नगर पंचायत घिरोर मैनपुरी</span>
+              <span className="text-sm font-medium">नगर पंचायत बेवर मैनपुरी</span>
             </div>
             <div className="flex items-center space-x-3">
               <Instagram className="h-4 w-4 hover:text-primary cursor-pointer transition-colors" />
@@ -219,7 +219,7 @@ export default function LandingPage() {
       className="bg-neutral-primary-soft w-full border border-default rounded-base shadow-xs"
     >
       <img
-        className="rounded-t-base sm:h-55 lg:h-80 w-full object-fill"
+        className="rounded-t-base sm:h-55 lg:h-90 w-full object-fill"
         src={card.img}
         alt={card.post}
       />
@@ -497,7 +497,7 @@ export default function LandingPage() {
             <Building2 className="h-6 w-6 text-primary" />
             <span className="font-bold text-foreground">Digital ULB |</span>
                <span className="font-semi-bold text-foreground">
-                नगर पंचायत घिरोर मैनपुरी
+                नगर पंचायत बेवर मैनपुरी
                </span>
           </div>
           <p className="text-muted-foreground">© 2025-26 APEX INTERNATIONAL. All rights reserved.</p>
