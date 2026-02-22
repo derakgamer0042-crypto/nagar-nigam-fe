@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const images = [
-  "/bewar-hero.png",
+  "/kanchausi-hero.png",
 ];
 
 export default function HeroSection() {

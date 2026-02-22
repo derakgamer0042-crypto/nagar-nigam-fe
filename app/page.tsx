@@ -66,13 +66,13 @@ const cards = [
     img: "/bewar-cardimage-2.jpeg ",
     name: "सरित कांत",
     post: "अध्यक्ष",
-    location:"(नगर पंचायत बेवर मैनपुरी)",
+    location:"(नगर पंचायत कंचौसी कानपुर देहात)",
   },
   {
     img: "/bewarEO.jpg",
     name: "",
     post: "अधिशासी अधिकारी",
-    location:"(नगर पंचायत बेवर मैनपुरी)",
+    location:"(नगर पंचायत कंचौसी कानपुर देहात)",
   },
   {
     img: "/rakesh.jpg",
@@ -127,7 +127,7 @@ export default function LandingPage() {
           <div className="container mx-auto flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <MapPin className="h-4 w-4" />
-              <span className="text-sm font-medium">नगर पंचायत बेवर मैनपुरी</span>
+              <span className="text-sm font-medium">नगर पंचायत कंचौसी कानपुर देहात</span>
             </div>
             <div className="flex items-center space-x-3">
               <Instagram className="h-4 w-4 hover:text-primary cursor-pointer transition-colors" />
@@ -497,7 +497,7 @@ export default function LandingPage() {
             <Building2 className="h-6 w-6 text-primary" />
             <span className="font-bold text-foreground">Digital ULB |</span>
                <span className="font-semi-bold text-foreground">
-                नगर पंचायत बेवर मैनपुरी
+                नगर पंचायत कंचौसी कानपुर देहात
                </span>
           </div>
           <p className="text-muted-foreground">© 2025-26 APEX INTERNATIONAL. All rights reserved.</p>
